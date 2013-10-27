@@ -12,7 +12,7 @@ This repository contains Android Clients for Amazon S3.
 Instructions
 =================
 
-Clone the repository and import to Eclipse
+Clone the repository and import into Eclipse
 ```xml
 $ git clone https://github.com/huberflores/S3-Android-Amazon.git
 ```
