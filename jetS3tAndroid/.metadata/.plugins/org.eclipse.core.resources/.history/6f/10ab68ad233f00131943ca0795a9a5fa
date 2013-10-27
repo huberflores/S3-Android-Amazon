@@ -1,0 +1,5 @@
+package mc.cs.ut.ee.s3imageupload;
+
+public class CommonUtilities {
+
+}

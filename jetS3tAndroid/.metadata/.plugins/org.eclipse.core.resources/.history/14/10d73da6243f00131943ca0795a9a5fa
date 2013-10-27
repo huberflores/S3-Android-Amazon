@@ -1,0 +1,7 @@
+package mc.cs.ut.ee.s3imageupload;
+
+public class CommonUtilities {
+	public static final String S3_SECRETKEY ="huber";
+	public static final String S3_ACCESSKEY="flores";
+
+}

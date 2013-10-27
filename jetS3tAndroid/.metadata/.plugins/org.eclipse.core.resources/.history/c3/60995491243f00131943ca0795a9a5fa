@@ -1,0 +1,68 @@
+package mc.cs.ut.ee.s3imageupload;
+
+import org.jets3t.service.S3Service;
+import org.jets3t.service.S3ServiceException;
+import org.jets3t.service.impl.rest.httpclient.RestS3Service;
+import org.jets3t.service.security.AWSCredentials;
+
+import mc.cs.ut.ee.s3imageupload.R;
+import mc.cs.ut.ee.s3imageupload.R.id;
+import mc.cs.ut.ee.s3imageupload.R.layout;
+import mc.cs.ut.ee.s3imageupload.R.menu;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class LogInActivity extends Activity {
+
+    public static final String EXTRA_USERNAME = "username";
+    public static final String EXTRA_PASSWORD = "password";
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_log_in);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_log_in, menu);
+        return true;
+    }
+
+    public void logIn(@SuppressWarnings("unused") View view) {
+        EditText usernameField = (EditText) findViewById(R.id.username);
+        EditText passwordField = (EditText) findViewById(R.id.password);
+        
+        usernameField.setText(mc.cs.ut.ee.s3imageupload.CommonUtilities.S3_ACCESSKEY);
+        passwordField.setText(mc.cs.ut.ee.s3imageupload.CommonUtilities.S3_SECRETKEY);
+        try {
+            String username = usernameField.getText().toString();
+            String password = passwordField.getText().toString();
+
+            S3Service service = new RestS3Service(new AWSCredentials(username, password));
+            if (!service.isAuthenticatedConnection()) {
+                loginFailed();
+                return;
+            }
+
+            Intent intent = new Intent(getApplicationContext(), PictureActivity.class);
+            intent.putExtra(EXTRA_USERNAME, username);
+            intent.putExtra(EXTRA_PASSWORD, password);
+            startActivity(intent);
+
+        } catch (S3ServiceException e) {
+            loginFailed();
+        }
+
+    }
+
+    private void loginFailed() {
+        Toast.makeText(getApplicationContext(), "Logging in failed!", Toast.LENGTH_LONG).show();
+    }
+}

@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppTheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#111" >
+
+    <Spinner
+        android:id="@+id/bucket_list"
+        style="@style/AppTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/take_picture"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="#666" />
+
+    <ImageView
+        android:id="@+id/preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:maxHeight="120dp"
+        android:maxWidth="120dp" 
+        />
+
+    <Button 
+        android:id="@+id/take_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/preview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="124dp"
+        android:onClick="takePicture"
+        android:text="take picture" />
+
+    <Button
+        android:id="@+id/upload" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="uploadPicture"
+        android:text="upload" />
+
+    <TextView
+        android:id="@+id/bucket_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bucket_list"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="select bucket"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#CCC" />
+
+</RelativeLayout>
